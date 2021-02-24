@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.c
+commMemoirePartagee.h
+/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
+sys/stat.h
+-
+fcntl.h
+-
+
+/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
+stdint.h
+-
+sys/mman.h
+-
+sys/stat.h
+-
+sched.h
+-
+unistd.h
+-
+fcntl.h
+-
+errno.h
+-
+stdio.h
+-
+pthread.h
+-
+string.h
+-
+
