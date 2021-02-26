@@ -21,7 +21,37 @@
             "targets": [
               {
                 "artifacts": [
-                  "/home/setr/projects/laboratoire3/labo3-h21/src/build/convertisseur"
+                  "/home/setr/projects/laboratoire3/labo3-h21/src/build/decodeur"
+                ],
+                "buildDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src/build",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g   -Wall -Wextra -Wpedantic -Wduplicated-cond -Wlogical-op -Wnull-dereference -Wshadow -pthread",
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "allocateurMemoire.c",
+                      "commMemoirePartagee.c",
+                      "jpgd.cpp",
+                      "utils.c",
+                      "decodeur.c"
+                    ]
+                  }
+                ],
+                "fullName": "decodeur",
+                "isGeneratorProvided": false,
+                "linkFlags": "-rdynamic",
+                "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
+                "linkLibraries": "-lrt -pthread",
+                "linkerLanguage": "CXX",
+                "name": "decodeur",
+                "sourceDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src",
+                "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/home/setr/projects/laboratoire3/labo3-h21/src/build/compositeur"
                 ],
                 "buildDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src/build",
                 "fileGroups": [
@@ -33,17 +63,17 @@
                       "allocateurMemoire.c",
                       "commMemoirePartagee.c",
                       "utils.c",
-                      "convertisseurgris.c"
+                      "compositeur.c"
                     ]
                   }
                 ],
-                "fullName": "convertisseur",
+                "fullName": "compositeur",
                 "isGeneratorProvided": false,
                 "linkFlags": "-rdynamic",
                 "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
                 "linkLibraries": "-lrt -pthread",
                 "linkerLanguage": "CXX",
-                "name": "convertisseur",
+                "name": "compositeur",
                 "sourceDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src",
                 "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
                 "type": "EXECUTABLE"
@@ -108,7 +138,7 @@
               },
               {
                 "artifacts": [
-                  "/home/setr/projects/laboratoire3/labo3-h21/src/build/compositeur"
+                  "/home/setr/projects/laboratoire3/labo3-h21/src/build/convertisseur"
                 ],
                 "buildDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src/build",
                 "fileGroups": [
@@ -120,47 +150,17 @@
                       "allocateurMemoire.c",
                       "commMemoirePartagee.c",
                       "utils.c",
-                      "compositeur.c"
+                      "convertisseurgris.c"
                     ]
                   }
                 ],
-                "fullName": "compositeur",
+                "fullName": "convertisseur",
                 "isGeneratorProvided": false,
                 "linkFlags": "-rdynamic",
                 "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
                 "linkLibraries": "-lrt -pthread",
                 "linkerLanguage": "CXX",
-                "name": "compositeur",
-                "sourceDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src",
-                "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
-                "type": "EXECUTABLE"
-              },
-              {
-                "artifacts": [
-                  "/home/setr/projects/laboratoire3/labo3-h21/src/build/decodeur"
-                ],
-                "buildDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src/build",
-                "fileGroups": [
-                  {
-                    "compileFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g   -Wall -Wextra -Wpedantic -Wduplicated-cond -Wlogical-op -Wnull-dereference -Wshadow -pthread",
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "allocateurMemoire.c",
-                      "commMemoirePartagee.c",
-                      "jpgd.cpp",
-                      "utils.c",
-                      "decodeur.c"
-                    ]
-                  }
-                ],
-                "fullName": "decodeur",
-                "isGeneratorProvided": false,
-                "linkFlags": "-rdynamic",
-                "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
-                "linkLibraries": "-lrt -pthread",
-                "linkerLanguage": "CXX",
-                "name": "decodeur",
+                "name": "convertisseur",
                 "sourceDirectory": "/home/setr/projects/laboratoire3/labo3-h21/src",
                 "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
                 "type": "EXECUTABLE"
@@ -170,7 +170,7 @@
         ]
       }
     ],
-    "cookie": "0.5168993469040901",
+    "cookie": "0.11187668772832016",
     "inReplyTo": "codemodel",
     "type": "reply"
   }

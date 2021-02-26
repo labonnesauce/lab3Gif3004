@@ -6,37 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.c
-commMemoirePartagee.h
-/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
-sys/stat.h
--
-fcntl.h
--
-sys/mman.h
--
-pthread.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.c
+allocateurMemoire.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
+malloc.h
 -
 
-/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
-stdint.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
+stdio.h
 -
-sys/mman.h
--
-sys/stat.h
--
-sched.h
+stdlib.h
 -
 unistd.h
 -
 fcntl.h
 -
 errno.h
--
-stdio.h
--
-pthread.h
--
-string.h
 -
 

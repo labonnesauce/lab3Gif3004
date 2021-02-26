@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "commmemoirepartagee.h": "c"
+        "commmemoirepartagee.h": "c",
+        "allocateurmemoire.h": "c"
     }
 }
