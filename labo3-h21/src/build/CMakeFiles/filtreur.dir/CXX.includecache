@@ -13,6 +13,10 @@ sys/stat.h
 -
 fcntl.h
 -
+sys/mman.h
+-
+pthread.h
+-
 
 /home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
 stdint.h
