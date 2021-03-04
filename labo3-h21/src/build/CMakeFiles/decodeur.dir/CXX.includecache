@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.c
+allocateurMemoire.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
+malloc.h
+-
+
 /home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
 stdio.h
 -

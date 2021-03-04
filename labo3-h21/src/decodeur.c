@@ -21,6 +21,7 @@ struct videoInfos{
         uint32_t canaux;
         uint32_t fps;
 };
+struct sched_attr attr;
 
 /******************************************************************************
 * FORMAT DU FICHIER VIDEO
@@ -48,48 +49,60 @@ int main(int argc, char* argv[]){
 
     //Décoder le string de paramètres
     int opt;
-    while((opt = getopt(argc,argv, "nortrrfifodeadline")) != -1){
+    char* value = NULL;
+    int retour;
+    while((opt = getopt(argc,argv, "s:d:")) != -1){
         switch(opt){
-            case 'nort':
-                sched_setattr(0, sched_attr, sched_flags);
+            case 's':
+                if(value* == 'NORT'){
+                    retour = sched_setattr(0, sched_nice, 0);
+                    if(retour == -1){
+                        perror("Nice error");
+                        return -1;
+                    }
+                }
+                if(value* == 'RR'){
+                    retour = sched_setattr(0, sched_priority, 0);
+                    if(retour == -1){
+                        perror("Round Robin error");
+                        return -1;
+                    }
+                }
+                if(value* == 'FIFO'){
+                    retour = sched_setattr(0, sched_priority, 0);
+                    if(retour == -1){
+                        perror("FIFO error");
+                        return -1;
+                    }
+                }
+                if(value* == 'DEADLINE'){
+
+                    attr.sched_runtime = 1;
+                    attr.sched_deadline = 1;
+                    attr.sched_period = 1;
+                    attr.sched_policy = SCHED_DEADLINE;
+                    retour = sched_setattr(0, &attr, 0);
+                    if(retour == -1){
+                        perror("Deadline error");
+                        return -1;
+                    }
+                }else{
+
+                }
                 break;
-            case 'rr':
-                sched_setattr(0, sched_priority, sched_flags);
-                break;
-            case 'fifo':
-                sched_setattr(0, sched_priority, sched_flags);
-                break;
-            case 'deadline':
+            case 'd':
                 attr.sched_runtime = 1;
                 attr.sched_deadline = 1;
                 attr.sched_period = 1;
-                sched_setattr(0, sched_attr, sched_flags);
-                break;
+                attr.sched_policy = SCHED_DEADLINE;
+
+                value = optarg;
             default:
                 break;
         }
     }
-    for(; optind < argc; optind++){
-
-        printf(argv[optind]);
-    }
-
-    unsigned char *imageData = decompress_jpeg_image_from_memory(const unsigned char *pSrc_data, int src_data_size,
-    int *width, int *height, int *actual_comps, int req_comps);
-
-
-    for(int i = 0; i < 24;i++){
-        if(i­>=0 || i<=3){
-            if(imageData.Content()[i]!=header[i]){
-                return -1;
-            }
-        }
-        if(i­>=4 || i<=7){
-            uint32_t larg = 0;
-            larg |= (uint32_t)imageData.Content()[i] << (i-4)*8);
-            videoInfos->largeur = larg;
-        }
-    }
+    argv[0]; //flux entrée
+    argv[1]; //flux sortie
 
     //Envoyer sur la zone mémoire partagé
 

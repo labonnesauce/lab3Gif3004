@@ -47,8 +47,5 @@ void* tempsreel_malloc(size_t taille, struct memPool* pool){
 }
 
 void tempsreel_free(void* ptr, struct memPool* pool){
-    poolFreed *pFreed = pool->freed;
-    //a checker
-	//pool->freed = ptr;
-	pool->freed->nextFree = pFreed;
+   free(ptr);
 }

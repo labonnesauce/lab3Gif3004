@@ -9,7 +9,7 @@ int initMemoirePartageeLecteur(const char* identifiant, struct memPartage *zone)
     struct stat fileInfo;
     fstat(zone->fd, &fileInfo);
 
-    if(fileInfo.st_size ­> 0){
+    if(fileInfo.st_size){ //­>0
         if(zone->header->frameWriter == 0){
             sched_yield();
         }else{
