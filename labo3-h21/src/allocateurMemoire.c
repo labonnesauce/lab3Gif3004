@@ -15,7 +15,7 @@
 // problème (par exemple manque de mémoire) est survenu.
 int prepareMemoire(size_t tailleImageEntree, size_t tailleImageSortie, struct memPool* pool){
     //code trouvé ici https://stackoverflow.com/questions/11749386/implement-own-memory-pool
-    pool->m_poolPtr = (char *) malloc(tailleImageEntree * 5);
+    pool->m_poolPtr = (char *) malloc(tailleImageSortie + tailleImageEntree * 5);
 
     if(pool->m_poolPtr == NULL)
     {
@@ -48,7 +48,7 @@ void* tempsreel_malloc(size_t taille, struct memPool* pool){
 
 void tempsreel_free(void* ptr, struct memPool* pool){
     poolFreed *pFreed = pool->freed;
-//a checker
+    //a checker
 	//pool->freed = ptr;
 	pool->freed->nextFree = pFreed;
 }

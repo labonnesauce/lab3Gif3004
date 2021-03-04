@@ -179,13 +179,19 @@ void ecrireImage(const int position, const int total,
 	}
 }
 
+int analyseArguments(){
+	int nbrActifs = 0;
+	
 
+
+	return nbrActifs;
+}
 
 int main(int argc, char* argv[])
 {
     // TODO
     // ÉCRIVEZ ICI votre code d'analyse des arguments du programme et d'initialisation des zones mémoire partagées
-    int nbrActifs;      // Après votre initialisation, cette variable DOIT contenir le nombre de flux vidéos actifs (de 1 à 4 inclusivement).
+    int nbrActifs = analyseArguments();      // Après votre initialisation, cette variable DOIT contenir le nombre de flux vidéos actifs (de 1 à 4 inclusivement).
 
     // Initialisation des structures nécessaires à l'affichage
     long int screensize = 0;

@@ -39,13 +39,60 @@ struct videoInfos{
 *            4          uint32    0 (indique la fin du fichier)
 ******************************************************************************/
 
-
 int main(int argc, char* argv[]){
     
     // Écrivez le code de décodage et d'envoi sur la zone mémoire partagée ici!
     // N'oubliez pas que vous pouvez utiliser jpgd::decompress_jpeg_image_from_memory()
     // pour décoder une image JPEG contenue dans un buffer!
     // N'oubliez pas également que ce décodeur doit lire les fichiers ULV EN BOUCLE
+
+    //Décoder le string de paramètres
+    int opt;
+    while((opt = getopt(argc,argv, "nortrrfifodeadline")) != -1){
+        switch(opt){
+            case 'nort':
+                sched_setattr(0, sched_attr, sched_flags);
+                break;
+            case 'rr':
+                sched_setattr(0, sched_priority, sched_flags);
+                break;
+            case 'fifo':
+                sched_setattr(0, sched_priority, sched_flags);
+                break;
+            case 'deadline':
+                attr.sched_runtime = 1;
+                attr.sched_deadline = 1;
+                attr.sched_period = 1;
+                sched_setattr(0, sched_attr, sched_flags);
+                break;
+            default:
+                break;
+        }
+    }
+    for(; optind < argc; optind++){
+
+        printf(argv[optind]);
+    }
+
+    unsigned char *imageData = decompress_jpeg_image_from_memory(const unsigned char *pSrc_data, int src_data_size,
+    int *width, int *height, int *actual_comps, int req_comps);
+
+
+    for(int i = 0; i < 24;i++){
+        if(i­>=0 || i<=3){
+            if(imageData.Content()[i]!=header[i]){
+                return -1;
+            }
+        }
+        if(i­>=4 || i<=7){
+            uint32_t larg = 0;
+            larg |= (uint32_t)imageData.Content()[i] << (i-4)*8);
+            videoInfos->largeur = larg;
+        }
+    }
+
+    //Envoyer sur la zone mémoire partagé
+
 
     return 0;
 }
