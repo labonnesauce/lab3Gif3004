@@ -74,6 +74,4 @@ int attenteLecteurAsync(struct memPartage *zone);
 // Appelé par l'écrivain pour se mettre en attente de la lecture du résultat précédent par un lecteur
 int attenteEcrivain(struct memPartage *zone);
 
-// N'oubliez pas de créer le fichier commMemoirePartagee.c et d'y implémenter les fonctions décrites ici!
-
 #endif

@@ -18,7 +18,7 @@ int initMemoirePartageeLecteur(const char* identifiant, struct memPartage *zone)
     zone->data = (((unsigned char*)shm)+sizeof(memPartageHeader));
     zone->header = header;
     zone->tailleDonnees = st.st_size - sizeof(memPartageHeader);
-    zone->copieCompteur = 0;
+    zone->copieCompteur = 1;
 
     while(zone->header->frameWriter == 0);
 
@@ -44,17 +44,19 @@ int initMemoirePartageeEcrivain(const char* identifiant, struct memPartage *zone
 
     pthread_mutex_init(&header->mutex, &mutex_attr);
 
+    pthread_mutex_lock(&header->mutex);
+
     zone->data = (((unsigned char*)shm)+sizeof(memPartageHeader));
     zone->header = header;
     zone->tailleDonnees = taille;
-    zone->copieCompteur = 99999;
+    zone->copieCompteur = 1;
     
     header->largeur = headerInfos->largeur;
     header->hauteur = headerInfos->hauteur;
     header->canaux = headerInfos->canaux;
     header->fps = headerInfos->fps;
     header->frameReader = 0;
-    header->frameWriter = 0;
+    header->frameWriter = 1;
 
     return 0;
 }
@@ -62,21 +64,21 @@ int initMemoirePartageeEcrivain(const char* identifiant, struct memPartage *zone
 // Appelé par le lecteur pour se mettre en attente d'un résultat
 int attenteLecteur(struct memPartage *zone){
     while(zone->header->frameWriter == zone->header->frameReader); 
-    return pthread_mutex_lock(&zone->header->mutex);
+    return 1;
 }
 
 // Fonction spéciale similaire à attenteLecteur, mais asynchrone : cette fonction ne bloque jamais.
 // Cela est utile pour le compositeur, qui ne doit pas bloquer l'entièreté des flux si un seul est plus lent.
 int attenteLecteurAsync(struct memPartage *zone){
     if(zone->header->frameWriter == zone->header->frameReader)
-        return 1;
+        return 0;
 
-    return pthread_mutex_trylock(&zone->header->mutex);
+    return 1;
 
 }
 
 // Appelé par l'écrivain pour se mettre en attente de la lecture du résultat précédent par un lecteur
 int attenteEcrivain(struct memPartage *zone){
    while(zone->copieCompteur == zone->header->frameReader);
-   return pthread_mutex_lock(&zone->header->mutex);
+   return 1;
 }

@@ -11,7 +11,7 @@
 // Low-pass : 2*image (3 canaux)
 // High-pass : 3*image (3 canaux)
 
-#define ALLOC_N_BIG 16
+#define ALLOC_N_BIG 10
 #define ALLOC_N_SMALL 100
 #define ALLOC_SMALL_SIZE 1024
 
