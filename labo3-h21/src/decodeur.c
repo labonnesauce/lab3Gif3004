@@ -40,6 +40,11 @@ struct sched_attr attr;
 *            4          uint32    0 (indique la fin du fichier)
 ******************************************************************************/
 
+//Valide l'entête du fichier video reçu
+int validate_header(const char *actual_header) {
+    return strncmp(header, actual_header, 4) != 0;
+}
+
 int main(int argc, char* argv[]){
     
     // Écrivez le code de décodage et d'envoi sur la zone mémoire partagée ici!
@@ -48,9 +53,18 @@ int main(int argc, char* argv[]){
     // N'oubliez pas également que ce décodeur doit lire les fichiers ULV EN BOUCLE
 
     //Décoder le string de paramètres
+    uint32_t index = 0;
+    int erreur = 0;
     int opt;
     char* value = NULL;
     int retour;
+    
+    char *filename;
+    char *output_flux;
+
+    int optc = 0;
+    int affinity = 1;
+    int core = -1;
     while((opt = getopt(argc,argv, "s:d:")) != -1){
         switch(opt){
             case 's':
