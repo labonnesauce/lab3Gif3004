@@ -56,7 +56,6 @@ int main(int argc, char* argv[]){
     uint32_t index = 0;
     int erreur = 0;
     int opt;
-    char* value = NULL;
     int retour;
     
     char *filename;
@@ -65,61 +64,133 @@ int main(int argc, char* argv[]){
     int optc = 0;
     int affinity = 1;
     int core = -1;
+
+    uint8_t sched = 0; //If the scheduling is to be changed
+
+    attr.size = sizeof(struct sched_attr);
+
+
     while((opt = getopt(argc,argv, "s:d:")) != -1){
         switch(opt){
             case 's':
-                if(value* == 'NORT'){
-                    retour = sched_setattr(0, sched_nice, 0);
-                    if(retour == -1){
-                        perror("Nice error");
-                        return -1;
-                    }
+                if(optarg[0] == 'R'){
+                    sched = 1;
+                    attr.sched_policy = SCHED_RR;
                 }
-                if(value* == 'RR'){
-                    retour = sched_setattr(0, sched_priority, 0);
-                    if(retour == -1){
-                        perror("Round Robin error");
-                        return -1;
-                    }
+                if(optarg[0] == 'F'){
+                    sched = 1;
+                    attr.sched_policy = SCHED_FIFO;
                 }
-                if(value* == 'FIFO'){
-                    retour = sched_setattr(0, sched_priority, 0);
-                    if(retour == -1){
-                        perror("FIFO error");
-                        return -1;
-                    }
-                }
-                if(value* == 'DEADLINE'){
-
+                if(optarg[0] == 'D'){
+                    sched = 1;
                     attr.sched_runtime = 1;
                     attr.sched_deadline = 1;
                     attr.sched_period = 1;
                     attr.sched_policy = SCHED_DEADLINE;
-                    retour = sched_setattr(0, &attr, 0);
-                    if(retour == -1){
-                        perror("Deadline error");
-                        return -1;
-                    }
                 }else{
 
                 }
                 break;
             case 'd':
-                attr.sched_runtime = 1;
-                attr.sched_deadline = 1;
-                attr.sched_period = 1;
+                attr.sched_runtime = (__u64)atoi(strtok(optarg,","));
+                attr.sched_deadline = (__u64)atoi(strtok(optarg,",")); 
+                attr.sched_period = (__u64)atoi(strtok(optarg,",")); 
                 attr.sched_policy = SCHED_DEADLINE;
 
-                value = optarg;
+                break;
             default:
                 break;
         }
     }
-    argv[0]; //flux entrée
-    argv[1]; //flux sortie
+    
+    int input_vid = open(argv[optind], O_RDONLY);
+
+    if (input_vid < 0){
+        printf("Fichier d'entree invalide\n");
+        exit(EXIT_FAILURE);
+    }
+
+    struct stat videoSt;
+
+    fstat(input_vid, &videoSt);
+
+    const char *videoMem = (char*)mmap(NULL, videoSt.st_size, PROT_READ,MAP_POPULATE | MAP_PRIVATE, input_vid, 0);
+
+    int headerVal = validate_header(videoMem);
+
+    if (headerVal) {
+        printf("Header invalide\n");
+        exit(EXIT_FAILURE);
+    }
+
 
     //Envoyer sur la zone mémoire partagé
 
+    struct videoInfos VideoInf;
+    memcpy(&VideoInf.largeur,videoMem+4 ,4);
+    memcpy(&VideoInf.hauteur,videoMem+8 ,4);
+    memcpy(&VideoInf.canaux, videoMem+12,4);
+    memcpy(&VideoInf.fps, videoMem+16,4);
+
+    if(prepareMemoire(VideoInf.largeur * VideoInf.hauteur * VideoInf.canaux, 0) < 0) {
+        printf("Erreur Memoire\n");
+        exit(EXIT_FAILURE);
+    }
+
+    struct memPartage memPart;
+    struct memPartageHeader memPartHeader;
+    memPartHeader.hauteur = VideoInf.hauteur;
+    memPartHeader.largeur = VideoInf.largeur;
+    memPartHeader.canaux = VideoInf.canaux;
+    memPartHeader.fps = VideoInf.fps;
+    memPart.header = &memPartHeader;
+
+    if (initMemoirePartageeEcrivain(argv[optind+1], &memPart, VideoInf.largeur * VideoInf.hauteur * VideoInf.canaux, &memPartHeader) < 1) {
+        printf("Erreur initMemoire\n");
+        exit(EXIT_FAILURE);
+    }
+
+    uint32_t offset = 20;
+
+    while(1) {
+        uint32_t taille;
+        memcpy(&taille, videoMem + offset, 4);
+
+        if(taille == 0) {
+            offset = 20;
+            memcpy(&taille, videoMem + offset, 4);
+        }
+
+        offset += 4;
+
+        int largeur = memPartHeader.largeur;
+        int hauteur = memPartHeader.hauteur;
+        int cannauxActual;
+
+        unsigned char* image = decompress_jpeg_image_from_memory(videoMem+offset, taille, &largeur, &hauteur, &cannauxActual, memPartHeader.canaux);
+
+        offset += taille;
+
+        if(largeur != memPart.header->largeur ||
+            hauteur != memPart.header->hauteur ||
+            cannauxActual != memPartHeader.canaux) {
+                printf("Erreur decompression\n");
+                exit(EXIT_FAILURE);
+        }
+
+        memcpy(memPart.data,image,largeur*hauteur*cannauxActual);
+
+        tempsreel_free(image);
+
+        memPart.copieCompteur = memPart.header->frameReader;
+
+        pthread_mutex_unlock(&memPart.header->mutex);
+        
+        attenteEcrivain(&memPart); 
+        pthread_mutex_lock(&memPart.header->mutex);
+        memPart.header->frameWriter++;
+
+    }
 
     return 0;
 }

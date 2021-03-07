@@ -18,7 +18,6 @@ int initMemoirePartageeLecteur(const char* identifiant, struct memPartage *zone)
     zone->data = (((unsigned char*)shm)+sizeof(memPartageHeader));
     zone->header = header;
     zone->tailleDonnees = st.st_size - sizeof(memPartageHeader);
-    zone->copieCompteur = 1;
 
     while(zone->header->frameWriter == 0);
 

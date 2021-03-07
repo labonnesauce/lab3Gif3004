@@ -32,7 +32,10 @@ int prepareMemoire(size_t tailleImageEntree, size_t tailleImageSortie){
         libreSmall[i] = 1;
     }
     int lock = mlockall();
-    if(lock!=0) perror("Erreur de mlock \n")
+    if(lock!=0) {
+        perror("Erreur de mlock \n");
+        return -1;
+    }
     return 0;
 }
 

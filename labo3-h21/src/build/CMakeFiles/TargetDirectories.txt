@@ -1,7 +1,7 @@
-/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/rebuild_cache.dir
-/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/compositeur.dir
-/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/decodeur.dir
-/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/edit_cache.dir
-/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/redimensionneur.dir
-/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/filtreur.dir
-/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/convertisseur.dir
+/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/rebuild_cache.dir
+/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/compositeur.dir
+/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/decodeur.dir
+/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/edit_cache.dir
+/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/redimensionneur.dir
+/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/filtreur.dir
+/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/convertisseur.dir
