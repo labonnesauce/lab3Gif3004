@@ -53,17 +53,8 @@ int main(int argc, char* argv[]){
     // N'oubliez pas également que ce décodeur doit lire les fichiers ULV EN BOUCLE
 
     //Décoder le string de paramètres
-    uint32_t index = 0;
-    int erreur = 0;
     int opt;
-    int retour;
-    
-    char *filename;
-    char *output_flux;
 
-    int optc = 0;
-    int affinity = 1;
-    int core = -1;
 
     uint8_t sched = 0; //If the scheduling is to be changed
 
@@ -145,10 +136,13 @@ int main(int argc, char* argv[]){
     memPartHeader.fps = VideoInf.fps;
     memPart.header = &memPartHeader;
 
-    if (initMemoirePartageeEcrivain(argv[optind+1], &memPart, VideoInf.largeur * VideoInf.hauteur * VideoInf.canaux, &memPartHeader) < 1) {
+    if (initMemoirePartageeEcrivain(argv[optind+1], &memPart, VideoInf.largeur * VideoInf.hauteur * VideoInf.canaux, &memPartHeader) < 0) {
         printf("Erreur initMemoire\n");
         exit(EXIT_FAILURE);
     }
+
+    if(sched != 0)
+        sched_setattr(0, &attr, 0);
 
     uint32_t offset = 20;
 
@@ -167,16 +161,18 @@ int main(int argc, char* argv[]){
         int hauteur = memPartHeader.hauteur;
         int cannauxActual;
 
-        unsigned char* image = decompress_jpeg_image_from_memory(videoMem+offset, taille, &largeur, &hauteur, &cannauxActual, memPartHeader.canaux);
+        unsigned char* image = jpgd::decompress_jpeg_image_from_memory((const unsigned char*)(videoMem+offset), taille, &largeur, &hauteur, &cannauxActual, memPartHeader.canaux);
 
         offset += taille;
 
-        if(largeur != memPart.header->largeur ||
-            hauteur != memPart.header->hauteur ||
-            cannauxActual != memPartHeader.canaux) {
+        if(largeur != (int) memPart.header->largeur ||
+            hauteur != (int) memPart.header->hauteur ||
+            cannauxActual != (int) memPartHeader.canaux) {
                 printf("Erreur decompression\n");
                 exit(EXIT_FAILURE);
         }
+
+        enregistreImage(image, hauteur, largeur, cannauxActual, "image.ppm");
 
         memcpy(memPart.data,image,largeur*hauteur*cannauxActual);
 

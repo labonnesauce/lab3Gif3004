@@ -21,35 +21,6 @@
             "targets": [
               {
                 "artifacts": [
-                  "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/filtreur"
-                ],
-                "buildDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src/build",
-                "fileGroups": [
-                  {
-                    "compileFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g   -Wall -Wextra -Wpedantic -Wduplicated-cond -Wlogical-op -Wnull-dereference -Wshadow -pthread",
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "allocateurMemoire.c",
-                      "commMemoirePartagee.c",
-                      "utils.c",
-                      "filtreur.c"
-                    ]
-                  }
-                ],
-                "fullName": "filtreur",
-                "isGeneratorProvided": false,
-                "linkFlags": "-rdynamic",
-                "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
-                "linkLibraries": "-lrt -pthread",
-                "linkerLanguage": "CXX",
-                "name": "filtreur",
-                "sourceDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src",
-                "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
-                "type": "EXECUTABLE"
-              },
-              {
-                "artifacts": [
                   "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/compositeur"
                 ],
                 "buildDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src/build",
@@ -73,6 +44,35 @@
                 "linkLibraries": "-lrt -pthread",
                 "linkerLanguage": "CXX",
                 "name": "compositeur",
+                "sourceDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src",
+                "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/filtreur"
+                ],
+                "buildDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src/build",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g   -Wall -Wextra -Wpedantic -Wduplicated-cond -Wlogical-op -Wnull-dereference -Wshadow -pthread",
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "allocateurMemoire.c",
+                      "commMemoirePartagee.c",
+                      "utils.c",
+                      "filtreur.c"
+                    ]
+                  }
+                ],
+                "fullName": "filtreur",
+                "isGeneratorProvided": false,
+                "linkFlags": "-rdynamic",
+                "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
+                "linkLibraries": "-lrt -pthread",
+                "linkerLanguage": "CXX",
+                "name": "filtreur",
                 "sourceDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src",
                 "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
                 "type": "EXECUTABLE"
@@ -108,35 +108,6 @@
               },
               {
                 "artifacts": [
-                  "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/redimensionneur"
-                ],
-                "buildDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src/build",
-                "fileGroups": [
-                  {
-                    "compileFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g   -Wall -Wextra -Wpedantic -Wduplicated-cond -Wlogical-op -Wnull-dereference -Wshadow -pthread",
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "allocateurMemoire.c",
-                      "commMemoirePartagee.c",
-                      "utils.c",
-                      "redimensionneur.c"
-                    ]
-                  }
-                ],
-                "fullName": "redimensionneur",
-                "isGeneratorProvided": false,
-                "linkFlags": "-rdynamic",
-                "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
-                "linkLibraries": "-lrt -pthread",
-                "linkerLanguage": "CXX",
-                "name": "redimensionneur",
-                "sourceDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src",
-                "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
-                "type": "EXECUTABLE"
-              },
-              {
-                "artifacts": [
                   "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/decodeur"
                 ],
                 "buildDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src/build",
@@ -164,13 +135,42 @@
                 "sourceDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src",
                 "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
                 "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/redimensionneur"
+                ],
+                "buildDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src/build",
+                "fileGroups": [
+                  {
+                    "compileFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g   -Wall -Wextra -Wpedantic -Wduplicated-cond -Wlogical-op -Wnull-dereference -Wshadow -pthread",
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "allocateurMemoire.c",
+                      "commMemoirePartagee.c",
+                      "utils.c",
+                      "redimensionneur.c"
+                    ]
+                  }
+                ],
+                "fullName": "redimensionneur",
+                "isGeneratorProvided": false,
+                "linkFlags": "-rdynamic",
+                "linkLanguageFlags": "-Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/opt/vc/lib -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/usr/local/lib -g -Og -g",
+                "linkLibraries": "-lrt -pthread",
+                "linkerLanguage": "CXX",
+                "name": "redimensionneur",
+                "sourceDirectory": "/home/setr/projets/lab3Gif3004/labo3-h21/src",
+                "sysroot": "/home/setr/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot",
+                "type": "EXECUTABLE"
               }
             ]
           }
         ]
       }
     ],
-    "cookie": "0.9149260808042521",
+    "cookie": "0.5423903980849618",
     "inReplyTo": "codemodel",
     "type": "reply"
   }

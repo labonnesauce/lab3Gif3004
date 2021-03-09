@@ -31,7 +31,7 @@ int prepareMemoire(size_t tailleImageEntree, size_t tailleImageSortie){
         espaceSmall[i] = malloc(ALLOC_SMALL_SIZE);
         libreSmall[i] = 1;
     }
-    int lock = mlockall();
+    int lock = mlockall(MCL_CURRENT);
     if(lock!=0) {
         perror("Erreur de mlock \n");
         return -1;
@@ -59,7 +59,7 @@ void* tempsreel_malloc(size_t taille){
         }
     }
 
-    perror("Erreur leur du tempsreel_malloc \n", taille);
+    perror("Erreur leur du tempsreel_malloc \n");
     return NULL;
 }
 

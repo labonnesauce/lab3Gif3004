@@ -27,7 +27,7 @@ int initMemoirePartageeLecteur(const char* identifiant, struct memPartage *zone)
 
 // Appelé au début du programme pour l'initialisation de la zone mémoire (cas de l'écrivain)
 int initMemoirePartageeEcrivain(const char* identifiant, struct memPartage *zone, size_t taille, struct memPartageHeader* headerInfos){
-     if ((zone->fd = shm_open(identifiant, O_CREAT | O_RDWR,  S_IRUSR | S_IWUSR)) < 0){
+     if ((zone->fd = shm_open(identifiant, O_CREAT | O_RDWR,  0666)) < 0){
            return -1;
      }
 
