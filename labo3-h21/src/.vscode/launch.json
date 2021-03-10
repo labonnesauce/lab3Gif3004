@@ -11,7 +11,7 @@
             "request": "attach",
             "gdbpath": "${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/bin/arm-raspbian-linux-gnueabihf-gdb",
             "executable": "./build/decodeur",
-            "target": "10.0.0.110:4560",
+            "target": "192.168.2.55:4560",
             "remote": true,
             "autorun": [
                 "set sysroot ${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/"
@@ -26,7 +26,7 @@
             "request": "attach",
             "gdbpath": "${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/bin/arm-raspbian-linux-gnueabihf-gdb",
             "executable": "./build/compositeur",
-            "target": "10.0.0.110:4561",
+            "target": "192.168.2.55:4561",
             "remote": true,
             "autorun": [
                 "set sysroot ${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/"
@@ -41,7 +41,7 @@
             "request": "attach",
             "gdbpath": "${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/bin/arm-raspbian-linux-gnueabihf-gdb",
             "executable": "./build/filtreur",
-            "target": "10.0.0.110:4562",
+            "target": "192.168.2.55:4562",
             "remote": true,
             "autorun": [
                 "set sysroot ${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/"
@@ -56,7 +56,7 @@
             "request": "attach",
             "gdbpath": "${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/bin/arm-raspbian-linux-gnueabihf-gdb",
             "executable": "./build/redimensionneur",
-            "target": "10.0.0.110:4563",
+            "target": "192.168.2.55:4563",
             "remote": true,
             "autorun": [
                 "set sysroot ${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/"
@@ -71,7 +71,7 @@
             "request": "attach",
             "gdbpath": "${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/bin/arm-raspbian-linux-gnueabihf-gdb",
             "executable": "./build/convertisseur",
-            "target": "10.0.0.110:4564",
+            "target": "192.168.2.55:4564",
             "remote": true,
             "autorun": [
                 "set sysroot ${env:HOME}/arm-cross-comp-env/arm-raspbian-linux-gnueabihf/arm-raspbian-linux-gnueabihf/sysroot/"

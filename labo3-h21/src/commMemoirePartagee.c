@@ -19,8 +19,7 @@ int initMemoirePartageeLecteur(const char* identifiant, struct memPartage *zone)
     zone->header = header;
     zone->tailleDonnees = st.st_size - sizeof(memPartageHeader);
 
-    while(zone->header->frameWriter == 0)
-        usleep(DELAI_INIT_READER_USEC);
+    while(zone->header->frameWriter == 0);
 
     return 0;
 
@@ -63,14 +62,14 @@ int initMemoirePartageeEcrivain(const char* identifiant, struct memPartage *zone
 
 // Appelé par le lecteur pour se mettre en attente d'un résultat
 int attenteLecteur(struct memPartage *zone){
-    while(zone->header->frameWriter == zone->header->frameReader); 
+    while(zone->header->frameWriter == zone->copieCompteur); 
     return 1;
 }
 
 // Fonction spéciale similaire à attenteLecteur, mais asynchrone : cette fonction ne bloque jamais.
 // Cela est utile pour le compositeur, qui ne doit pas bloquer l'entièreté des flux si un seul est plus lent.
 int attenteLecteurAsync(struct memPartage *zone){
-    if(zone->header->frameWriter == zone->header->frameReader)
+    if(zone->header->frameWriter == zone->copieCompteur)
         return 0;
 
     return 1;

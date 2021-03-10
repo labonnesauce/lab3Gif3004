@@ -1,4 +1,4 @@
-# Install script for directory: /home/setr/projects/laboratoire3/labo3-h21/src
+# Install script for directory: /home/setr/projets/lab3Gif3004/labo3-h21/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/setr/projects/laboratoire3/labo3-h21/src/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

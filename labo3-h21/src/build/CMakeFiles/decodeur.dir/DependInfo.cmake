@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.c" "/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/decodeur.dir/allocateurMemoire.c.o"
-  "/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.c" "/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/decodeur.dir/commMemoirePartagee.c.o"
-  "/home/setr/projects/laboratoire3/labo3-h21/src/decodeur.c" "/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/decodeur.dir/decodeur.c.o"
-  "/home/setr/projects/laboratoire3/labo3-h21/src/jpgd.cpp" "/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/decodeur.dir/jpgd.cpp.o"
-  "/home/setr/projects/laboratoire3/labo3-h21/src/utils.c" "/home/setr/projects/laboratoire3/labo3-h21/src/build/CMakeFiles/decodeur.dir/utils.c.o"
+  "/home/setr/projets/lab3Gif3004/labo3-h21/src/allocateurMemoire.c" "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/decodeur.dir/allocateurMemoire.c.o"
+  "/home/setr/projets/lab3Gif3004/labo3-h21/src/commMemoirePartagee.c" "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/decodeur.dir/commMemoirePartagee.c.o"
+  "/home/setr/projets/lab3Gif3004/labo3-h21/src/decodeur.c" "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/decodeur.dir/decodeur.c.o"
+  "/home/setr/projets/lab3Gif3004/labo3-h21/src/jpgd.cpp" "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/decodeur.dir/jpgd.cpp.o"
+  "/home/setr/projets/lab3Gif3004/labo3-h21/src/utils.c" "/home/setr/projets/lab3Gif3004/labo3-h21/src/build/CMakeFiles/decodeur.dir/utils.c.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
