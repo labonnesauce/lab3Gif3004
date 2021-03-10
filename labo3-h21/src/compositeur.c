@@ -61,7 +61,7 @@
 #include "commMemoirePartagee.h"
 #include "utils.h"
 
-
+int frames_count[] = {0, 0, 0, 0};
 // Fonction permettant de récupérer le temps courant sous forme double
 double get_time()
 {
@@ -193,6 +193,41 @@ int main(int argc, char* argv[])
     // ÉCRIVEZ ICI votre code d'analyse des arguments du programme et d'initialisation des zones mémoire partagées
     int nbrActifs = analyseArguments();      // Après votre initialisation, cette variable DOIT contenir le nombre de flux vidéos actifs (de 1 à 4 inclusivement).
 
+	int core = -1;
+    int opt;
+    while ((opt = getopt(argc, argv, "a:")) != -1) {
+        switch (opt) {
+            case 'a':
+                core = strtol(optarg, NULL, 10);
+                break;
+            default: /* '?' */
+                fprintf(stderr, "Usage: %s [-a core] flux_entree1 [flux_entree2] [flux_entree3] [flux_entree4]\n",
+                        argv[0]);
+                exit(EXIT_FAILURE);
+        }
+    }
+
+	nbrActifs = argc - optind;
+
+    if (nbrActifs < 1 || nbrActifs > 4){
+        fprintf(stderr, "Usage: %s [-a core] flux_entree1 [flux_entree2] [flux_entree3] [flux_entree4]\n",
+                argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    struct memPartage zones[nbrActifs];
+    for(int i = 0; i<nbrActifs; i++){
+        if(initMemoirePartageeLecteur(argv[i+optind], &zones[i]) != 0)
+            exit(EXIT_FAILURE);
+    }
+
+	 size_t frame_size = 0;
+    for (int i = 0; i < nbrActifs; i++) {
+        if (zones[i].tailleDonnees > frame_size) {
+            frame_size = zones[i].tailleDonnees;
+        }
+    }
+    prepareMemoire(frame_size, 0);
     // Initialisation des structures nécessaires à l'affichage
     long int screensize = 0;
     // Ouverture du framebuffer
@@ -255,6 +290,21 @@ int main(int argc, char* argv[])
 		return -1;
     }
 
+	struct timeval last_frame_time[nbrActifs];
+    struct timeval frame_diff[nbrActifs];
+    for (int i=0; i<nbrActifs; i++){
+        gettimeofday(&last_frame_time[i], NULL);
+        frame_diff[i].tv_sec = 0;
+        frame_diff[i].tv_usec = 1000000/zones[i].header->fps;
+    }
+
+	struct timeval last_frame_counter_time;
+    gettimeofday(&last_frame_counter_time, NULL);
+
+    //supression du fichier s'il existait deja et on s'assure qu'il existe, on le ferme immediatement puisqu'on a aucune
+    //garantie de quand le programme sera arrete
+    FILE *log = fopen("stats.txt", "w+");
+    fclose(log);
 
     while(1){
             // Boucle principale du programme
@@ -271,7 +321,41 @@ int main(int argc, char* argv[])
             // 427x240 (voir le commentaire en haut du document).
         
             // Exemple d'appel à ecrireImage (n'oubliez pas de remplacer les arguments commençant par A_REMPLIR!)
-            /**ecrireImage(A_REMPLIR_POSITION_ACTUELLE, 
+		struct timeval current_time;
+        gettimeofday(&current_time, NULL);
+
+        int delta_t = current_time.tv_sec - last_frame_counter_time.tv_sec;
+        if (delta_t > 1) {
+            last_frame_counter_time.tv_sec = current_time.tv_sec;
+            FILE *log = fopen("stats.txt", "a");
+
+            if (log == NULL) {
+                printf("Erreur a l'ouverture du fichier de log.\n");
+            }
+			 fseek(log, 0, SEEK_END);
+            for (int i = 0; i < nbrActifs; i++) {
+                int timestamp = last_frame_counter_time.tv_sec;
+                float frame_count = frames_count[i];
+                float fps = frame_count/delta_t;
+                fprintf(log, "(%d) flux %d: %f\n", timestamp, i, fps);
+
+                frames_count[i] = 0;
+            }
+            fclose(log);
+        }
+		for(int i=0; i<nbrActifs; i++){
+            struct timeval current_diff;
+            timersub(&current_time, &last_frame_time[i], &current_diff);
+            if (timercmp(&current_diff, &frame_diff[i], <))
+                continue;
+
+            if(attenteLecteurAsync(&zones[i]) != 0)
+                continue;
+			uint32_t w = zones[i].header->largeur;
+            uint32_t h = zones[i].header->hauteur;
+            uint32_t c = zones[i].header->canaux;
+            size_t tailleDonnees = w*h*c;
+            ecrireImage(i, 
                         nbrActifs, 
                         fbfd, 
                         fbp, 
@@ -279,10 +363,17 @@ int main(int argc, char* argv[])
                         vinfo.yres, 
                         &vinfo, 
                         finfo.line_length,
-                        A_REMPLIR_DONNEES_DE_LA_TRAME,
-                        A_REMPLIR_LARGEUR_DE_LA_TRAME,
-                        A_REMPLIR_HAUTEUR_DE_LA_TRAME,
-                        A_REMPLIR_NOMBRECANAUX_DANS_LA_TRAME);**/
+                        zones[i].data,
+                        w,
+                        h,
+                        c);
+			
+			gettimeofday(&last_frame_time[i], NULL);
+
+
+            zones[i].header->frameReader += 1;
+
+            pthread_mutex_unlock(&zones[i].header->mutex);
     }
 
 
@@ -301,4 +392,4 @@ int main(int argc, char* argv[])
     return 0;
 
 }
-
+}

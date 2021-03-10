@@ -6,7 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/setr/projets/lab3Gif3004/labo3-h21/src/allocateurMemoire.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.c
+allocateurMemoire.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
+malloc.h
+-
+
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
 stdio.h
 -
 stdlib.h
@@ -22,7 +28,19 @@ fcntl.h
 errno.h
 -
 
-/home/setr/projets/lab3Gif3004/labo3-h21/src/commMemoirePartagee.h
+/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.c
+commMemoirePartagee.h
+/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
+sys/stat.h
+-
+fcntl.h
+-
+sys/mman.h
+-
+pthread.h
+-
+
+/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
 stdint.h
 -
 sys/mman.h
@@ -44,23 +62,33 @@ pthread.h
 string.h
 -
 
-/home/setr/projets/lab3Gif3004/labo3-h21/src/decodeur.c
+/home/setr/projects/laboratoire3/labo3-h21/src/decodeur.c
 sys/resource.h
 -
 sched.h
 -
 schedsupp.h
-/home/setr/projets/lab3Gif3004/labo3-h21/src/schedsupp.h
+/home/setr/projects/laboratoire3/labo3-h21/src/schedsupp.h
 allocateurMemoire.h
-/home/setr/projets/lab3Gif3004/labo3-h21/src/allocateurMemoire.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
 commMemoirePartagee.h
-/home/setr/projets/lab3Gif3004/labo3-h21/src/commMemoirePartagee.h
+/home/setr/projects/laboratoire3/labo3-h21/src/commMemoirePartagee.h
 utils.h
-/home/setr/projets/lab3Gif3004/labo3-h21/src/utils.h
+/home/setr/projects/laboratoire3/labo3-h21/src/utils.h
 jpgd.h
-/home/setr/projets/lab3Gif3004/labo3-h21/src/jpgd.h
+/home/setr/projects/laboratoire3/labo3-h21/src/jpgd.h
 
-/home/setr/projets/lab3Gif3004/labo3-h21/src/jpgd.h
+/home/setr/projects/laboratoire3/labo3-h21/src/jpgd.cpp
+jpgd.h
+/home/setr/projects/laboratoire3/labo3-h21/src/jpgd.h
+allocateurMemoire.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
+string.h
+-
+assert.h
+-
+
+/home/setr/projects/laboratoire3/labo3-h21/src/jpgd.h
 stdlib.h
 -
 stdio.h
@@ -68,7 +96,7 @@ stdio.h
 setjmp.h
 -
 
-/home/setr/projets/lab3Gif3004/labo3-h21/src/schedsupp.h
+/home/setr/projects/laboratoire3/labo3-h21/src/schedsupp.h
 linux/kernel.h
 -
 unistd.h
@@ -86,7 +114,11 @@ linux/sched.h
 sys/types.h
 -
 
-/home/setr/projets/lab3Gif3004/labo3-h21/src/utils.h
+/home/setr/projects/laboratoire3/labo3-h21/src/utils.c
+utils.h
+/home/setr/projects/laboratoire3/labo3-h21/src/utils.h
+
+/home/setr/projects/laboratoire3/labo3-h21/src/utils.h
 stdio.h
 -
 math.h
@@ -94,5 +126,5 @@ math.h
 string.h
 -
 allocateurMemoire.h
-/home/setr/projets/lab3Gif3004/labo3-h21/src/allocateurMemoire.h
+/home/setr/projects/laboratoire3/labo3-h21/src/allocateurMemoire.h
 
