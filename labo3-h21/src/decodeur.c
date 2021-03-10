@@ -146,6 +146,7 @@ int main(int argc, char* argv[]){
 
     uint32_t offset = 20;
 
+
     while(1) {
         uint32_t taille;
         memcpy(&taille, videoMem + offset, 4);
@@ -169,6 +170,7 @@ int main(int argc, char* argv[]){
             hauteur != (int) memPart.header->hauteur ||
             cannauxActual != (int) memPartHeader.canaux) {
                 printf("Erreur decompression\n");
+                printf("%d, %d, %d \n", (int) memPart.header->largeur, (int) memPart.header->hauteur, (int) memPartHeader.canaux);
                 exit(EXIT_FAILURE);
         }
 

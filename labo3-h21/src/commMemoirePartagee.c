@@ -4,6 +4,9 @@
 #include <sys/mman.h>
 #include <pthread.h>
 
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+
 // Appelé au début du programme pour l'initialisation de la zone mémoire (cas du lecteur)
 int initMemoirePartageeLecteur(const char* identifiant, struct memPartage *zone){
     while ((zone->fd = shm_open(identifiant, O_RDWR, S_IRUSR | S_IWUSR)) < 0);
@@ -81,3 +84,5 @@ int attenteEcrivain(struct memPartage *zone){
    while(zone->copieCompteur == zone->header->frameReader);
    return 1;
 }
+
+#pragma GCC pop_options

@@ -10,8 +10,8 @@ sudo ./decodeur 160p/03_BigBuckBunny.ulv /mem1 &
 sudo ./decodeur 160p/05_Llama_drama.ulv /mem3 &
 sudo ./decodeur 160p/01_ToS.ulv /mem5 &
 sleep 0.5
-sudo ./redimensionneur -w 427 -h 240 -m 1 /mem1 /mem2 &
-sudo ./redimensionneur -w 427 -h 240 -m 1 /mem3 /mem4 &
+sudo ./redimensionneur -w 427 -h 240 -m 0 /mem1 /mem2 &
+sudo ./redimensionneur -w 427 -h 240 -m 0 /mem3 /mem4 &
 sudo ./redimensionneur -w 427 -h 240 -m 1 /mem5 /mem6 &
 sleep 0.5
 sudo ./compositeur /mem2 /mem4 /mem5 /mem6 &
