@@ -172,8 +172,6 @@ int main(int argc, char* argv[]){
                 exit(EXIT_FAILURE);
         }
 
-        enregistreImage(image, hauteur, largeur, cannauxActual, "image.ppm");
-
         memcpy(memPart.data,image,largeur*hauteur*cannauxActual);
 
         tempsreel_free(image);

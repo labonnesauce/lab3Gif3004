@@ -62,6 +62,8 @@
 #include "utils.h"
 
 int frames_count[] = {0, 0, 0, 0};
+struct memPartage zones[4];
+
 // Fonction permettant de récupérer le temps courant sous forme double
 double get_time()
 {
@@ -179,14 +181,6 @@ void ecrireImage(const int position, const int total,
 	}
 }
 
-int analyseArguments(){
-	int nbrActifs = 0;
-	
-
-
-	return nbrActifs;
-}
-
 int main(int argc, char* argv[])
 {
     // TODO
@@ -236,13 +230,14 @@ int main(int argc, char* argv[])
 
 	int nbrActifs = argc - optind;
 
-    struct memPartage  zones[nbrActifs];
     for(int i = 0; i<nbrActifs; i++){
         if(initMemoirePartageeLecteur(argv[i+optind], &zones[i]) != 0){
 			printf("Erreur init Memoire \n");
             exit(EXIT_FAILURE);
 		}
     }
+
+
 
 	size_t tailleimageGrosse = 0;
     for (int i = 0; i < nbrActifs; i++) {
@@ -260,6 +255,7 @@ int main(int argc, char* argv[])
         perror("Erreur lors de l'ouverture du framebuffer ");
         return -1;
     }
+
 
     // Obtention des informations sur l'affichage et le framebuffer
     struct fb_var_screeninfo vinfo;
@@ -294,6 +290,7 @@ int main(int argc, char* argv[])
 			break;
 	}
 
+	
     vinfo.xres_virtual = vinfo.xres;
     vinfo.yres_virtual = vinfo.yres * 2;
     if (ioctl(fbfd, FBIOPUT_VSCREENINFO, &vinfo)) {
@@ -304,6 +301,7 @@ int main(int argc, char* argv[])
     if (ioctl(fbfd, FBIOGET_FSCREENINFO, &finfo)) {
 		perror("Erreur lors de l'appel a ioctl (2) ");
     }
+	
 
     // On fait un mmap pour avoir directement accès au framebuffer
     screensize = finfo.smem_len;
@@ -313,11 +311,15 @@ int main(int argc, char* argv[])
 		perror("Erreur lors du mmap de l'affichage ");
 		return -1;
     }
+	
 
-    FILE *stat = fopen("stats.txt", "w+");
+    FILE *stat = fopen("stats.txt", "w");
+
 
 	if(sched != 0)
         sched_setattr(0, &attr, 0);
+
+	double timeZero = get_time();
 
     while(1){
             // Boucle principale du programme
@@ -335,15 +337,26 @@ int main(int argc, char* argv[])
         
             // Exemple d'appel à ecrireImage (n'oubliez pas de remplacer les arguments commençant par A_REMPLIR!)
 
+		double current_time = get_time();
+
+		if(current_time - timeZero >= 1.0) {
+			fseek(stat, 0, SEEK_END);
+            for (int i = 0; i < nbrActifs; i++) {
+                double fps = frames_count[i]/(current_time - timeZero);
+                fprintf(stat, "Video # %d: %f\n", i, fps);
+
+                frames_count[i] = 0;
+            }
+			timeZero = get_time();
+		}
+
 		for(int i=0; i<nbrActifs; i++){
 
             if(attenteLecteurAsync(&zones[i]) == 1) {
 				if(pthread_mutex_trylock(&zones[i].header->mutex) == 0) {
 
 					zones[i].header->frameReader++;
-					uint32_t largeur = zones[i].header->largeur;
-					uint32_t hauteur = zones[i].header->hauteur;
-					uint32_t cannaux = zones[i].header->canaux;
+
 					ecrireImage(i, 
 								nbrActifs, 
 								fbfd, 
@@ -353,9 +366,9 @@ int main(int argc, char* argv[])
 								&vinfo, 
 								finfo.line_length,
 								zones[i].data,
-								largeur,
-								hauteur,
-								cannaux);
+								zones[i].header->largeur,
+								zones[i].header->hauteur,
+								zones[i].header->canaux);
 					
 					frames_count[i]++;
 

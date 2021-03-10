@@ -48,7 +48,7 @@ int initMemoirePartageeEcrivain(const char* identifiant, struct memPartage *zone
     zone->data = (((unsigned char*)shm)+sizeof(memPartageHeader));
     zone->header = header;
     zone->tailleDonnees = taille;
-    zone->copieCompteur = 1;
+    zone->copieCompteur = 0;
     
     header->largeur = headerInfos->largeur;
     header->hauteur = headerInfos->hauteur;
