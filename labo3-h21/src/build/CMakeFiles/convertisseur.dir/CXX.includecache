@@ -17,6 +17,8 @@ sys/mman.h
 -
 pthread.h
 -
+sched.h
+-
 
 /home/setr/projets/lab3Gif3004/labo3-h21/src/commMemoirePartagee.h
 stdint.h

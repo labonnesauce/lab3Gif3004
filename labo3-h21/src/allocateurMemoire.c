@@ -23,7 +23,7 @@ int prepareMemoire(size_t tailleImageEntree, size_t tailleImageSortie){
     }
 
     for(int i = 0; i<ALLOC_N_BIG; i++){ 
-        espaceBig[i] = malloc(allocate);
+        espaceBig[i] = malloc(allocate*5);
         libreBig[i] = 1;
     }
 
@@ -36,7 +36,7 @@ int prepareMemoire(size_t tailleImageEntree, size_t tailleImageSortie){
         perror("Erreur de mlock \n");
         return -1;
     }
-    return 0;
+    return allocate;
 }
 
 // Ces deux fonctions doivent pouvoir s'utiliser exactement comme malloc() et free()

@@ -3,6 +3,7 @@
 #include <fcntl.h>           /* For O_* constants */
 #include <sys/mman.h>
 #include <pthread.h>
+#include <sched.h>
 
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
@@ -65,7 +66,8 @@ int initMemoirePartageeEcrivain(const char* identifiant, struct memPartage *zone
 
 // Appelé par le lecteur pour se mettre en attente d'un résultat
 int attenteLecteur(struct memPartage *zone){
-    while(zone->header->frameWriter == zone->copieCompteur); 
+    while(zone->header->frameWriter == zone->copieCompteur)
+        sched_yield();
     return 1;
 }
 
@@ -81,7 +83,8 @@ int attenteLecteurAsync(struct memPartage *zone){
 
 // Appelé par l'écrivain pour se mettre en attente de la lecture du résultat précédent par un lecteur
 int attenteEcrivain(struct memPartage *zone){
-   while(zone->copieCompteur == zone->header->frameReader);
+   while(zone->copieCompteur == zone->header->frameReader)
+    sched_yield();
    return 1;
 }
 

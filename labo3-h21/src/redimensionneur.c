@@ -79,31 +79,29 @@ int main(int argc, char* argv[]){
     struct memPartage VideoIn;
     struct memPartage VideoOut;
 
+
     if(initMemoirePartageeLecteur(argv[optind], &VideoIn) != 0){
         printf("Erreur init Memoire \n");
         exit(EXIT_FAILURE);
     }
 
-    printf("1 %d\n", VideoIn.header->hauteur);
+    int tailleSortie =  h * w * VideoIn.header->canaux;
 
-    prepareMemoire(h * w * VideoIn.header->canaux, VideoIn.tailleDonnees);
+    prepareMemoire(VideoIn.tailleDonnees, tailleSortie);
 
-    printf("2 %d\n", VideoIn.header->hauteur);
+
     struct memPartageHeader VideoOutHeader;
     VideoOutHeader.hauteur = h;
     VideoOutHeader.largeur = w;
     VideoOutHeader.canaux = VideoIn.header->canaux;
     VideoOutHeader.fps = VideoIn.header->fps;
-    VideoOut.header = &VideoOutHeader;
 
-    printf("3 %d\n", VideoIn.header->hauteur);
 
-    if (initMemoirePartageeEcrivain(argv[optind+1], &VideoOut, h * w * VideoIn.header->canaux, &VideoOutHeader) < 0) {
+    if (initMemoirePartageeEcrivain(argv[optind+1], &VideoOut, tailleSortie, &VideoOutHeader) < 0) {
         printf("Erreur initMemoire\n");
         exit(EXIT_FAILURE);
     }
 
-    printf("4 %d\n", VideoIn.header->hauteur);
 
     int in_height = VideoIn.header->hauteur;
     int in_width = VideoIn.header->largeur;
@@ -116,12 +114,10 @@ int main(int argc, char* argv[]){
         rg = resizeBilinearInit(h, w, in_height, in_width);
     }
 
-    printf("5 %d\n", VideoIn.header->hauteur);
-    printf("5 %d\n", in_height);
-    printf("5 %d\n", h);
-
     if(sched != 0)
         sched_setattr(0, &attr, 0);
+
+    
 
 
     while(1) {
